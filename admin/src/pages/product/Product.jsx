@@ -25,7 +25,7 @@ export default function Product() {
       "May",
       "Jun",
       "Jul",
-      "Agu",
+      "Aug",
       "Sep",
       "Oct",
       "Nov",
