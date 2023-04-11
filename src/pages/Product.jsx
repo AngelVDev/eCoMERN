@@ -148,8 +148,8 @@ const Product = () => {
       } catch (err) {
         console.log(err);
       }
-      getProduct();
     };
+    getProduct();
   });
   return (
     <Container>
