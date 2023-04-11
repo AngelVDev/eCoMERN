@@ -181,7 +181,7 @@ const Cart = () => {
       }
     };
     stripeToken && makeRequest();
-  }, [stripeToken, history]);
+  }, [stripeToken, history, cart.total]);
 
   return (
     <Container>
@@ -195,7 +195,7 @@ const Cart = () => {
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <TopButton type='filled'>CHECKOUT NOW</TopButton>
         </Top>
         <Bottom>
           <Info>
@@ -244,13 +244,13 @@ const Cart = () => {
               <SummaryItemText>Shipping Discount</SummaryItemText>
               <SummaryItemPrice>$ -5.90</SummaryItemPrice>
             </SummaryItem>
-            <SummaryItem type="total">
+            <SummaryItem type='total'>
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <StripeCheckout
-              name="TRU shop"
-              image="src\assets\TRU.png"
+              name='TRU shop'
+              image='src\assets\TRU.png'
               billingAddress
               shippingAddress
               description={`Your total is $${cart.total}`}
