@@ -20,7 +20,7 @@ const Pay = () => {
     const makeRequest = async () => {
       try {
         const res = await axios.post(
-          "http://localhost:5000/api/checkout/payment",
+          "https://e-commerce-tru.onrender.com/api/checkout/payment",
           {
             tokenId: stripeToken.id,
             amount: 2000,
@@ -48,11 +48,11 @@ const Pay = () => {
         <span>Processing. Please wait...</span>
       ) : (
         <StripeCheckout
-          name="TRU shop"
-          image="src\assets\TRU.png"
+          name='TRU shop'
+          image='src\assets\TRU.png'
           billingAddress
           shippingAddress
-          description="Your total is $20"
+          description='Your total is $20'
           amount={2000}
           token={onToken}
           stripeKey={KEY}
