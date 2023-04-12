@@ -76,19 +76,23 @@ const Navbar = () => {
         <Left>
           <Language>EN</Language>
           <SearchContainer>
-            <Input placeholder="Search" />
+            <Input placeholder='Search' />
             <Search style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>LAMA.</Logo>
+          <Logo>TRU.</Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
+          <Link to={"/register"}>
+            <MenuItem>REGISTER</MenuItem>
+          </Link>
+          <Link to={"/login"}>
+            <MenuItem>SIGN IN</MenuItem>
+          </Link>
           <Link to={"/cart"}>
             <MenuItem>
-              <Badge badgeContent={quantity} color="primary">
+              <Badge badgeContent={quantity} color='primary'>
                 <ShoppingCartOutlined />
               </Badge>
             </MenuItem>
