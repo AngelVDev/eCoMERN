@@ -65,18 +65,19 @@ const Register = () => {
   const navigate = useHistory();
   // const errorBack = useSelector((state) => state.user.error_register);
   const registerDone = useSelector((state) => state.user.register_done);
-  // const [errors, setErrors] = useState("");
+  const [errors, setErrors] = useState("");
   const [input, setInput] = useState({
-    userName: "",
+    username: "",
     email: "",
     password: "",
+    password2: "",
   });
 
   useEffect(() => {
     if (registerDone) {
       alert("Usuario creado correctamente");
       setInput({
-        userName: "",
+        username: "",
         email: "",
         password: "",
         password2: "",
@@ -85,7 +86,35 @@ const Register = () => {
     }
   }, [dispatch, navigate, registerDone]);
 
-  // const inputsError = ["userName", "email", "password", "password2"];
+  const inputsError = ["username", "email", "password", "password2"];
+
+  function validate(input) {
+    let errors = {};
+
+    if (!input.username) {
+      errors.username = "Please create a username.";
+    } else if (input.username.length > 20) {
+      errors.username = "Maximum of 20 characters.";
+    }
+    if (!input.email) {
+      errors.email = "You need an e-mail.";
+    } else if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(input.email)) {
+      errors.email = "Invalid email.";
+    }
+
+    if (!input.password) {
+      errors.password = "Create a password.";
+    } else if (input.password.length < 8) {
+      errors.password = "Between 8 and 20.";
+    }
+    if (!input.password2) {
+      errors.password2 = "Repeat it.";
+    } else if (input.password2 !== input.password) {
+      errors.password2 = "Passwords must match.";
+    }
+
+    return errors;
+  }
 
   function handleChange(e) {
     e.preventDefault();
@@ -94,32 +123,32 @@ const Register = () => {
       ...input,
       [e.target.name]: e.target.value,
     });
-    // setErrors(
-    //   validate({
-    //     ...input,
-    //     [e.target.name]: e.target.value,
-    //   })
-    // );
-    // dispatch(resetError());
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+    // dispatch();
   }
-  // function handleChange2(e) {
-  //   e.preventDefault();
-  //   setErrors(
-  //     validate({
-  //       ...input,
-  //       [e.target.name]: e.target.value,
-  //     })
-  //   );
-  // }
+  function handleChange2(e) {
+    e.preventDefault();
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    // if (
-    //   !inputsError.some((inp) => errors.hasOwnProperty(inp)) &&
-    //   input.userName.length > 0
-    // ) {
-    dispatch(userRegister(input));
-    // }
+    if (
+      !inputsError.some((inp) => errors.hasOwnProperty(inp)) &&
+      input.username.length > 0
+    ) {
+      dispatch(userRegister(input));
+    }
   }
 
   return (
@@ -131,7 +160,7 @@ const Register = () => {
           <Input placeholder='Last name' /> */}
           <Input
             placeholder='Username'
-            name='userName'
+            name='username'
             value={input.value}
             onChange={handleChange}
           />
@@ -153,7 +182,7 @@ const Register = () => {
             type='password'
             name='password2'
             value={input.value}
-            onChange={handleChange}
+            onChange={handleChange2}
           />
           <Agreement>
             By creating an account, I consent to the processing of my personal
