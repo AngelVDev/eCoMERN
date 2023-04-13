@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { TOKEN, currentUserInfo } from "../requestMethods";
 
 const Container = styled.div`
   height: 60px;
@@ -84,15 +85,25 @@ const Navbar = () => {
           <Logo>TRU.</Logo>
         </Center>
         <Right>
-          <Link to={"/register"}>
-            <MenuItem>REGISTER</MenuItem>
-          </Link>
-          <Link to={"/login"}>
-            <MenuItem>SIGN IN</MenuItem>
-          </Link>
+          {TOKEN !== null ? (
+            <MenuItem>{currentUserInfo.username}</MenuItem>
+          ) : (
+            <section>
+              <Link to={"/register"}>
+                <MenuItem>REGISTER</MenuItem>
+              </Link>
+              <Link to={"/login"}>
+                <MenuItem>SIGN IN</MenuItem>
+              </Link>
+            </section>
+          )}
           <Link to={"/cart"}>
             <MenuItem>
-              <Badge badgeContent={quantity} color='primary'>
+              <Badge
+                overlap='rectangular'
+                badgeContent={quantity}
+                color='primary'
+              >
                 <ShoppingCartOutlined />
               </Badge>
             </MenuItem>
