@@ -2,10 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: { currentUser: null, isFetching: false, error: false },
+  initialState: {
+    newUser: null,
+    currentUser: null,
+    isFetching: false,
+    error: false,
+  },
   reducers: {
     register: (state, action) => {
-      state.currentUser = action.payload;
+      state.newUser = action.payload;
+      if (state.newUser !== null) {
+        return (state.currentUser = state.newUser);
+      }
     },
     loginStart: (state, action) => {
       state.isFetching = true;
