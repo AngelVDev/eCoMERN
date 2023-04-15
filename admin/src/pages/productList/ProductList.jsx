@@ -4,7 +4,7 @@ import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, getProducts } from "../../redux/apiCalls";
+import { deleteProduct, getProducts } from "../../redux/apiCall";
 
 export default function ProductList() {
   const dispatch = useDispatch();
@@ -26,8 +26,8 @@ export default function ProductList() {
       width: 200,
       renderCell: (params) => {
         return (
-          <div className="productListItem">
-            <img className="productListImg" src={params.row.img} alt="" />
+          <div className='productListItem'>
+            <img className='productListImg' src={params.row.img} alt='' />
             {params.row.title}
           </div>
         );
@@ -47,10 +47,10 @@ export default function ProductList() {
         return (
           <>
             <Link to={"/product/" + params.row._id}>
-              <button className="productListEdit">Edit</button>
+              <button className='productListEdit'>Edit</button>
             </Link>
             <DeleteOutline
-              className="productListDelete"
+              className='productListDelete'
               onClick={() => handleDelete(params.row._id)}
             />
           </>
@@ -60,7 +60,7 @@ export default function ProductList() {
   ];
 
   return (
-    <div className="productList">
+    <div className='productList'>
       <DataGrid
         rows={products}
         disableSelectionOnClick
