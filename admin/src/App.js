@@ -22,33 +22,33 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/login">
+        <Route path='/dash/login'>
           <Login />
         </Route>
         {admin && (
           <>
             <Topbar />
-            <div className="container">
+            <div className='/dash/container'>
               <Sidebar />
-              <Route exact path="/">
+              <Route exact path='/dash/'>
                 <Home />
               </Route>
-              <Route path="/users">
+              <Route path='/dash/users'>
                 <UserList />
               </Route>
-              <Route path="/user/:userId">
+              <Route path='/dash/user/:userId'>
                 <User />
               </Route>
-              <Route path="/newUser">
+              <Route path='/dash/newUser'>
                 <NewUser />
               </Route>
-              <Route path="/products">
+              <Route path='/dash/products'>
                 <ProductList />
               </Route>
-              <Route path="/product/:productId">
+              <Route path='/dash/product/:productId'>
                 <Product />
               </Route>
-              <Route path="/newproduct">
+              <Route path='/dash/newproduct'>
                 <NewProduct />
               </Route>
             </div>
